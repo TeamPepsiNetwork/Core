@@ -338,6 +338,7 @@ g_PluginInfo =
 		["/time"] = 
 		{
 			HelpString = "Sets or displays the time.",
+			Permission = "core.time.base",
 			Subcommands = 
 			{
 				day = 
