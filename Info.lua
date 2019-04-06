@@ -567,6 +567,7 @@ g_PluginInfo =
 		["/whitelist"] =
 		{
 			HelpString= "Manages the whitelist.",
+			Permission = "core.whitelist.base",
 			Subcommands =
 			{
 				add =

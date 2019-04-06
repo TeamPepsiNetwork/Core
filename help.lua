@@ -8,7 +8,7 @@
 
 
 --- How many commands to put into one help page
-local g_CommandsPerPage = 8
+local g_CommandsPerPage = 10
 
 
 
