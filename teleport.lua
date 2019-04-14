@@ -1,11 +1,24 @@
 function HandleTPCommand(a_Split, a_Player)
-
-	if #a_Split == 2 or #a_Split == 3 then
+	if #a_Split == 2 then
 
 		-- Teleport to player specified in a_Split[2], tell them unless a_Split[3] equals "-h":
-		TeleportToPlayer( a_Player, a_Split[2], (a_Split[3] ~= "-h") )
+		TeleportToPlayer( a_Player, a_Split[2], false )
 		return true
 
+	elseif #a_Split == 3 then
+		local srcName = a_Split[2]
+		local dstName = a_Split[3]
+		if (not cRoot:Get():FindAndDoWithPlayer(srcName, function(src)
+			if (not cRoot:Get():FindAndDoWithPlayer(dstName, function(dst)
+				src:TeleportToEntity(dst)
+				a_Player:SendMessage("Teleported §l" .. srcName .. "§r to §l" .. dstName .. "§r!")
+			end)) then
+				a_Player:SendMessage("§cUnknown player: §l" .. dstName)
+			end
+		end)) then
+			a_Player:SendMessage("§cUnknown player: §l" .. srcName)
+		end
+		return true
 	elseif #a_Split == 4 then
 
 		-- Teleport to XYZ coords specified in a_Split[2, 3, 4]:
